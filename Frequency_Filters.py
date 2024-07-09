@@ -20,13 +20,16 @@ B=Abw+0.5*np.random.randn(600,800)
 # Perform FFT and shift
 Bt=np.fft.fft2(B)
 Bts=fftshift(Bt)
+# Calculate magnitude spectrum
+B_spectrum = np.abs(Bts)
 
-# Display the original and noisy images
+# Display the original and noisy images with hot colormap
 plt.subplot(1, 2, 1)
-plt.title("Resized Grayscale Image")
-plt.imshow(Abw, cmap='gray')
+plt.title("The orginal Image")
+plt.imshow(Abw, cmap='hot')
 
 plt.subplot(1, 2, 2)
-plt.title("Noisy Image")
-plt.imshow(B, cmap='gray')
+plt.title("The noisy Image")
+plt.imshow(B, cmap='hot')
+
 plt.show()
