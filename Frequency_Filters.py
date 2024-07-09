@@ -17,19 +17,35 @@ Abw = color.rgb2gray(A_resized)
 # Add noise to the grayscale image
 B=Abw+0.5*np.random.randn(600,800)
 
-# Perform FFT and shift
-Bt=np.fft.fft2(B)
-Bts=fftshift(Bt)
-# Calculate magnitude spectrum
+
+
+# Perform FFT and shift for the original image
+At = np.fft.fft2(Abw)
+Ats = np.fft.fftshift(At)
+A_spectrum = np.abs(Ats)
+
+# Perform FFT and shift for the noisy image
+Bt = np.fft.fft2(B)
+Bts = np.fft.fftshift(Bt)
 B_spectrum = np.abs(Bts)
 
-# Display the original and noisy images with hot colormap
-plt.subplot(1, 2, 1)
-plt.title("The orginal Image")
+# Original Image and its Magnitude Spectrum
+plt.subplot(2, 2, 1)
+plt.title("Original Image")
 plt.imshow(Abw, cmap='hot')
 
-plt.subplot(1, 2, 2)
-plt.title("The noisy Image")
+plt.subplot(2, 2, 2)
+plt.title("Magnitude Spectrum of Original Image")
+plt.imshow(np.log(1 + A_spectrum), cmap='hot')
+
+# Noisy Image and its Magnitude Spectrum
+plt.subplot(2, 2, 3)
+plt.title("Noisy Image")
 plt.imshow(B, cmap='hot')
 
+plt.subplot(2, 2, 4)
+plt.title("Magnitude Spectrum of Noisy Image")
+plt.imshow(np.log(1 + B_spectrum), cmap='hot')
+
+plt.tight_layout()
 plt.show()
