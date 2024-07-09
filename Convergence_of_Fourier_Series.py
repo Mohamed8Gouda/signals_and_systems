@@ -27,4 +27,6 @@ for k in range (9):
     a=np.dot(f,s)
     approx=approx+a*s
     plt.plot(x,f,x,approx)
+
+plt.tight_layout()
 plt.show()
