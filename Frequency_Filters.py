@@ -6,7 +6,7 @@ from skimage import io ,transform,color
 from numpy.fft import fft, fftshift, ifft
 
 # Read the image
-A= io.imread('photo.jpeg');
+A= io.imread('b&w.jpeg');
 
 # Resize the image to the desired resolution (600, 800)
 A_resized = transform.resize(A, (600, 800), anti_aliasing=True)
@@ -29,22 +29,22 @@ Bt = np.fft.fft2(B)
 Bts = np.fft.fftshift(Bt)
 B_spectrum = np.abs(Bts)
 
-# Original Image and its Magnitude Spectrum
+# Original Image and its FFT
 plt.subplot(2, 2, 1)
 plt.title("Original Image")
 plt.imshow(Abw, cmap='hot')
 
 plt.subplot(2, 2, 2)
-plt.title("Magnitude Spectrum of Original Image")
+plt.title("FFT of the Original Image")
 plt.imshow(np.log(1 + A_spectrum), cmap='hot')
 
-# Noisy Image and its Magnitude Spectrum
+# Noisy Image and its FFT
 plt.subplot(2, 2, 3)
 plt.title("Noisy Image")
 plt.imshow(B, cmap='hot')
 
 plt.subplot(2, 2, 4)
-plt.title("Magnitude Spectrum of Noisy Image")
+plt.title("FFT of the noisy Image")
 plt.imshow(np.log(1 + B_spectrum), cmap='hot')
 
 plt.tight_layout()
