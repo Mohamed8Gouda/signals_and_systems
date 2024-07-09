@@ -48,4 +48,5 @@ plt.title("FFT of the noisy Image")
 plt.imshow(np.log(1 + B_spectrum), cmap='hot')
 
 plt.tight_layout()
+
 plt.show()
